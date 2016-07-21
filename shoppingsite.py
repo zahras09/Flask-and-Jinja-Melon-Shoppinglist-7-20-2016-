@@ -7,10 +7,12 @@ Authors: Joel Burton, Christian Fernandez, Meggie Mahnken.
 """
 
 
-from flask import Flask, render_template, redirect, flash
+from flask import Flask, render_template, redirect, flash, session
 import jinja2
 
 import melons
+from flask_debugtoolbar import DebugToolbarExtension
+
 
 
 app = Flask(__name__)
@@ -83,13 +85,23 @@ def add_to_cart(id):
     page and display a confirmation message: 'Successfully added to cart'.
     """
 
-    # TODO: Finish shopping cart functionality
+    # See if cart (which is really a list) exists
+    if len(session) > 0:
+        #Append id to list
+        pass
+    else:
+        pass
+    # Create list and append id
+
+
+    # Flash message saying that id (the melon name) was added to the cart
+    # Load the shopping cart route '/cart' or cart.html ???
 
     # The logic here should be something like:
     #
     # - add the id of the melon they bought to the cart in the session
 
-    return "Oops! This needs to be implemented!"
+    return render_template("cart.html")
 
 
 @app.route("/login", methods=["GET"])
@@ -124,4 +136,7 @@ def checkout():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
+    app.debug = True
+    DebugToolbarExtension(app)
+    app.run()
