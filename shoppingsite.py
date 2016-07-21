@@ -88,9 +88,9 @@ def add_to_cart(id):
     # See if cart (which is really a list) exists
     if len(session) > 0:
         #Append id to list
-        pass
+        session[id] = [#melon name, quantity, price]
     else:
-        pass
+        
     # Create list and append id
 
 
